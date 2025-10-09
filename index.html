@@ -64,6 +64,7 @@ ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:
 
 	var timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
 	window.setInterval(function(){
+		timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
 		var now=new Date();
 		ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</span></div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
 		document.getElementById("msec").style.color=timeColor;
@@ -74,6 +75,7 @@ ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:
 </script>
 </body>
 </html>
+
 
 
 
