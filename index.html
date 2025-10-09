@@ -10,7 +10,9 @@
 
 	const canvas = document.getElementById('CanvasContainer');
      const ctx = canvas.getContext('2d');
-	  function drawLine(stratPoint,endPoint)
+	let StartPoint ={x:0,y:0};
+	let EndPoint ={x:0,y:0};
+	  function drawLine(StratPoint,EndPoint)
 		{
 			ctx.beginPath();
 			ctx.moveTo(startPoint.x, startPoint.y);    // 起点 (x, y)
@@ -68,13 +70,17 @@ ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:
 		var now=new Date();
 		ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</span></div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
 		document.getElementById("msec").style.color=timeColor;
-
-		drawLine({x:0,y:50},{x:500,y:50});
+        StartPoint.x =0;
+		StartPoint.y =50;
+		EndPoint.x =500;
+		EndPoint.y=50;
+		drawLine(StartPoint,EndPoint);
 },111);
 
 </script>
 </body>
 </html>
+
 
 
 
