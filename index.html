@@ -5,7 +5,7 @@
 <div id="timearea" style="margin:0px auto;width:500px;">
 
 <div>
-	<canvas id="CanvasContainer" style="z-index:-99999;width:100%;height:100%"></canvas>
+	<canvas id="CanvasContainer" style="z-index:-99999;width:100%;height:100%;position:fixed;"></canvas>
 <script type="text/javascript">
 
 	const canvas = document.getElementById('CanvasContainer');
@@ -17,7 +17,7 @@
 			ctx.beginPath();
 			ctx.moveTo(StartPoint.x, StartPoint.y);    // 起点 (x, y)
 			ctx.lineTo(EndPoint.x, EndPoint.y);   // 终点 (x, y)
-			ctx.lineWidth = 2;
+			ctx.lineWidth = 4;
 			ctx.strokeStyle = timeColor;
 			ctx.lineCap = 'round'; // 'butt' | 'round' | 'square'
 			ctx.stroke();
@@ -85,6 +85,7 @@ ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:
 </script>
 </body>
 </html>
+
 
 
 
