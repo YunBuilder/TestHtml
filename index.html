@@ -5,18 +5,20 @@
 <div id="timearea" style="margin:0px auto;width:500px;">
 
 <div>
-	<canvas id="CanvasContainer" style="z-index:99999;width:100%;height:100%;top:0px;left:0px;position:fixed;"></canvas>
+	<canvas id="CanvasContainer" style="z-index:-999999;width:100%;height:100%;top:0px;left:0px;position:fixed;"></canvas>
 <script type="text/javascript">
 
 	const canvas = document.getElementById('CanvasContainer');
-     const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d');
+
 	let StartPoint ={x:0,y:0};
 	let EndPoint ={x:0,y:0};
-	  function drawLine(StratPoint,EndPoint)
+
+	  function drawLine(startPoint,endPoint)
 		{
 			ctx.beginPath();
-			ctx.moveTo(StartPoint.x, StartPoint.y);    // 起点 (x, y)
-			ctx.lineTo(EndPoint.x, EndPoint.y);   // 终点 (x, y)
+			ctx.moveTo(startPoint.x, startPoint.y);    // 起点 (x, y)
+			ctx.lineTo(endPoint.x, endPoint.y);   // 终点 (x, y)
 			ctx.lineWidth = 4;
 			ctx.strokeStyle = timeColor;
 			ctx.lineCap = 'round'; // 'butt' | 'round' | 'square'
@@ -24,20 +26,20 @@
 		}
 
 	 window.addEventListener('resize', () => {
-     canvas.style.height=document.body.clientHeight +"px";
-     canvas.style.width=document.body.clientWidth + "px";
+     //canvas.style.height=document.body.offsetHeight +"px";
+    // canvas.style.width=document.body.offsetWidth + "px";
   });
 
-function ChangeTimeSize()
-{
+    function ChangeTimeSize()
+    {
 
-var ta=document.getElementById("timearea");
+        var ta=document.getElementById("timearea");
 
-///ta.style.height=document.getElementById("body").offsetHeight;
-//ta.style.width=document.body.clientWidth;
-}
+      ///ta.style.height=document.getElementById("body").offsetHeight;
+      //ta.style.width=document.body.clientWidth;
+    }
 
-var ta=document.getElementById("timearea");
+  var ta=document.getElementById("timearea");
 
   Date.prototype.format = function(fmt){
   
@@ -66,19 +68,32 @@ var ta=document.getElementById("timearea");
 
   return fmt;
 }
-var now=new Date();
-ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
+  var now=new Date();
+  ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
 
 	var timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
-	window.setInterval(function(){
+	
+  function getRandomY()
+  {
+    return Math.floor(Math.random() * document.body.offsetHeight);
+  }
+
+  function getRandomX()
+  {
+    return Math.floor(Math.random() * document.body.offsetWidth);
+  }
+
+  window.setInterval(function(){
 		timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
 		var now=new Date();
 		ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</span></div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
-		document.getElementById("msec").style.color=timeColor;
-        StartPoint.x =0;
-		StartPoint.y =50;
-		EndPoint.x =500;
-		EndPoint.y=50;
+		
+    document.getElementById("msec").style.color=timeColor;
+    
+    StartPoint.x =getRandomX;
+		StartPoint.y =getRandomY();
+		EndPoint.x =document.body.offsetWidth;
+		EndPoint.y=document.body.offsetHeight;
 		drawLine(StartPoint,EndPoint);
 },111);
 
