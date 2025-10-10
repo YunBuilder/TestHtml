@@ -1,12 +1,13 @@
 <html>
 <head></head>
 <body onload="ChangeTimeSize()" style="background:black;Color:white">
-<div id="timearea" style="margin:0px auto;width:500px;">
-<div>
-<canvas id="CanvasContainer" style="position:fixed;z-index:-999999;width:100%;height:100%;top:0;left:0;display:block"></canvas>
+	<canvas id="CanvasContainer" style="position:fixed;z-index:-999999;width:100%;height:100%;top:0;left:0;display:block">not support</canvas>
+	<div id="timearea" style="margin:0px auto;width:500px;">
+	<div>
+
 <script type="text/javascript">
-  const canvas = document.getElementById('CanvasContainer');
-  const ctx = canvas.getContext('2d');
+  const mycanvas = document.getElementById('CanvasContainer');
+  const ctx = mycanvas.getContext('2d');
 
 	let StartPoint ={x:0,y:0};
 	let EndPoint ={x:0,y:0};
@@ -27,8 +28,8 @@
 		}
 
 	 window.addEventListener('resize', () => {
-     canvas.height=window.innerHeight;
-     canvas.width=window.innerWidth;
+     mycanvas.height=window.innerHeight;
+     mycanvas.width=window.innerWidth;
   });
 
     function ChangeTimeSize()
@@ -94,18 +95,22 @@
 },111);
 
 	window.setInterval(()=>{
+		
+ 		ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+		
 	 	StartPoint.x =getRandomX();
 		StartPoint.y =getRandomY();
 		EndPoint.x =window.innerWidth;
 		EndPoint.y=window.innerHeight;
-		drawLine({x:0,y:StartPoint.y},{x:canvas.width,y:StartPoint.y});
+		drawLine({x:0,y:StartPoint.y},{x:mycanvas.width,y:StartPoint.y});
 
-	    drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:canvas.height});	
+	    drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
 	},500);
 
 </script>
 </body>
 </html>
+
 
 
 
