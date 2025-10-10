@@ -76,12 +76,12 @@
 	
   function getRandomY()
   {
-    return Math.floor(Math.random() * window.innerHeight)/2;
+    return Math.floor(Math.random() * window.innerHeight);
   }
 
   function getRandomX()
   {
-    return Math.floor(Math.random() * window.innerWidth)/2;
+    return Math.floor(Math.random() * window.innerWidth);
   }
 
   window.setInterval(function(){
@@ -95,12 +95,15 @@
 		StartPoint.y =getRandomY();
 		EndPoint.x =window.innerWidth;
 		EndPoint.y=window.innerHeight;
-		drawLine(StartPoint,EndPoint);
+		drawLine({x:0,y:startPoint.Y},{x:canvas.width,y:startPoint.y});
+
+	    drawLine({x:startPoint.x,y:0},{x:startPoint.x,y:canvas.height});
 },111);
 
 </script>
 </body>
 </html>
+
 
 
 
