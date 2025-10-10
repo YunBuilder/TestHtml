@@ -71,20 +71,20 @@
   var now=new Date();
   ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
 
-	var timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
+	var timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
 	
   function getRandomY()
   {
-    return Math.floor(Math.random() * document.body.offsetHeight);
+    return Math.floor(Math.random() * window.innerHeight)/2;
   }
 
   function getRandomX()
   {
-    return Math.floor(Math.random() * document.body.offsetWidth);
+    return Math.floor(Math.random() * window.innerWidth)/2;
   }
 
   window.setInterval(function(){
-		timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+')';
+		timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
 		var now=new Date();
 		ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</span></div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
 		
@@ -92,8 +92,8 @@
     
     StartPoint.x =getRandomX;
 		StartPoint.y =getRandomY();
-		EndPoint.x =document.body.offsetWidth;
-		EndPoint.y=document.body.offsetHeight;
+		EndPoint.x =window.innerWidth;
+		EndPoint.y=window.innerHeight;
 		drawLine(StartPoint,EndPoint);
 },111);
 
