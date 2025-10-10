@@ -5,7 +5,7 @@
 <div id="timearea" style="margin:0px auto;width:500px;">
 
 <div>
-	<canvas id="CanvasContainer" style="z-index:-999999;width:100%;height:100%;top:0;left:0;position:fixed;"></canvas>
+	<canvas id="CanvasContainer" style="position:fixed;z-index:-999999;width:100%;height:100%;top:0;left:0;"></canvas>
 <script type="text/javascript">
 
 	const canvas = document.getElementById('CanvasContainer');
@@ -90,7 +90,7 @@
 		
     document.getElementById("msec").style.color=timeColor;
     
-    StartPoint.x =getRandomX;
+        StartPoint.x =getRandomX();
 		StartPoint.y =getRandomY();
 		EndPoint.x =window.innerWidth;
 		EndPoint.y=window.innerHeight;
@@ -100,6 +100,7 @@
 </script>
 </body>
 </html>
+
 
 
 
