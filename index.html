@@ -97,13 +97,28 @@
 	window.setInterval(()=>{
 		
  		ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+
+    var numX = Math.floor(Math.random() * 10);
+    var numY = Math.floor(Math.random() * 10);
+    for(let i=0;i<numX;i++)
+    {
+      StartPoint.x =getRandomX();
+      StartPoint.y =getRandomY();
+      EndPoint.x =window.innerWidth;
+      EndPoint.y=window.innerHeight;
+      drawLine({x:0,y:StartPoint.y},{x:mycanvas.width,y:StartPoint.y});
+    }
 		
-	 	StartPoint.x =getRandomX();
-		StartPoint.y =getRandomY();
-		EndPoint.x =window.innerWidth;
-		EndPoint.y=window.innerHeight;
-		drawLine({x:0,y:StartPoint.y},{x:mycanvas.width,y:StartPoint.y});
-    drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
+    for(let j=0;j<numY;j++)
+    {
+      StartPoint.x =getRandomX();
+      StartPoint.y =getRandomY();
+      EndPoint.x =window.innerWidth;
+      EndPoint.y=window.innerHeight;
+      drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});
+    }
+	 	
+    //drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
 	},500);
 
 </script>
