@@ -21,7 +21,7 @@
 			ctx.beginPath();
 			ctx.moveTo(startPoint.x, startPoint.y);    // 起点 (x, y)
 			ctx.lineTo(endPoint.x, endPoint.y);   // 终点 (x, y)
-			ctx.lineWidth = 2;
+			ctx.lineWidth = 1;
 			ctx.strokeStyle = 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
 			ctx.lineCap = 'round'; // 'butt' | 'round' | 'square'
 			ctx.stroke();
@@ -103,8 +103,7 @@
 		EndPoint.x =window.innerWidth;
 		EndPoint.y=window.innerHeight;
 		drawLine({x:0,y:StartPoint.y},{x:mycanvas.width,y:StartPoint.y});
-
-	    drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
+    drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
 	},500);
 
 </script>
