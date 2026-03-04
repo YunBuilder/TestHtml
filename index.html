@@ -4,9 +4,23 @@
     body {
       margin: 0;
       background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
       color: white;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     #CanvasContainer {
@@ -25,6 +39,12 @@
       text-align: center;
       position: relative;
       top: 20%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     #timearea div {
