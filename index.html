@@ -1,127 +1,138 @@
 <html>
-<head></head>
-<body onload="ChangeTimeSize()" style="background:black;Color:white">
-	<canvas id="CanvasContainer" style="position:fixed;z-index:-999999;width:100%;height:100%;top:0;left:0;display:block">not support</canvas>
-	<div id="timearea" style="margin:0px auto;width:500px;">
-	<div>
-
-<script type="text/javascript">
-  const mycanvas = document.getElementById('CanvasContainer');
-  const ctx = mycanvas.getContext('2d');
-
-	let StartPoint ={x:0,y:0};
-	let EndPoint ={x:0,y:0};
-
-	  function drawLine(startPoint,endPoint)
-		{
-			//console.log(startPoint.x);
-  			//console.log(startPoint.y);
-  			//console.log(endPoint.x);
-			//console.log(endPoint.y);
-			ctx.beginPath();
-			ctx.moveTo(startPoint.x, startPoint.y);    // 起点 (x, y)
-			ctx.lineTo(endPoint.x, endPoint.y);   // 终点 (x, y)
-			ctx.lineWidth = 1;
-			ctx.strokeStyle = 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
-			ctx.lineCap = 'round'; // 'butt' | 'round' | 'square'
-			ctx.stroke();
-		}
-
-	 window.addEventListener('resize', () => {
-     mycanvas.height=window.innerHeight;
-     mycanvas.width=window.innerWidth;
-  });
-
-    function ChangeTimeSize()
-    {
-
-        var ta=document.getElementById("timearea");
-
-      ///ta.style.height=document.getElementById("body").offsetHeight;
-      //ta.style.width=document.body.clientWidth;
+<head>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
     }
 
-  var ta=document.getElementById("timearea");
-
-  Date.prototype.format = function(fmt){
-  
-  var weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-  var o = {
-    "M+" : this.getMonth()+1,                 //月份
-	"W":weeks[this.getDay()],
-    "d+" : this.getDate(),                    //日
-    "h+" : this.getHours(),                   //小时
-    "m+" : this.getMinutes(),                 //分
-    "s+" : this.getSeconds(),                 //秒
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度
-    "S"  : this.getMilliseconds()<10?"00"+this.getMilliseconds():this.getMilliseconds()<100?"0"+this.getMilliseconds():this.getMilliseconds()             //毫秒
-  };
-
-  if(/(y+)/.test(fmt)){
-    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-  }
-        
-  for(var k in o){
-    if(new RegExp("("+ k +")").test(fmt)){
-      fmt = fmt.replace(
-        RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));  
-    }       
-  }
-
-  return fmt;
-}
-  var now=new Date();
-  ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
-
-	var timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
-	
-  function getRandomY()
-  {
-    return Math.floor(Math.random() * window.innerHeight);
-  }
-
-  function getRandomX()
-  {
-    return Math.floor(Math.random() * window.innerWidth);
-  }
-
-  window.setInterval(function(){
-		timeColor= 'rgb('+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+','+parseInt(Math.random() * 255)+',1)';
-		var now=new Date();
-		ta.innerHTML="<div style='font-size:72px;margin:0px auto;width:500px;text-align:center'>"+now.format("hh:mm:ss.")+"<Span id='msec'>"+now.format("S")+"</span></div>"+"<div style='font-size:20px;margin:0px auto;width:500px;text-align:center'>"+now.format("yyyy-MM-dd W")+"</div>";
-		
-    document.getElementById("msec").style.color=timeColor;
-       
-},111);
-
-	window.setInterval(()=>{
-		
- 		ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
-
-    var numX = Math.floor(Math.random() * 10);
-    var numY = Math.floor(Math.random() * 10);
-    for(let i=0;i<numX;i++)
-    {
-      StartPoint.x =getRandomX();
-      StartPoint.y =getRandomY();
-      EndPoint.x =window.innerWidth;
-      EndPoint.y=window.innerHeight;
-      drawLine({x:0,y:StartPoint.y},{x:mycanvas.width,y:StartPoint.y});
+    #CanvasContainer {
+      position: fixed;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: block;
     }
-		
-    for(let j=0;j<numY;j++)
-    {
-      StartPoint.x =getRandomX();
-      StartPoint.y =getRandomY();
-      EndPoint.x =window.innerWidth;
-      EndPoint.y=window.innerHeight;
-      drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});
-    }
-	 	
-    //drawLine({x:StartPoint.x,y:0},{x:StartPoint.x,y:mycanvas.height});	
-	},500);
 
-</script>
+    #timearea {
+      margin: 0 auto;
+      width: 500px;
+      text-align: center;
+      position: relative;
+      top: 20%;
+    }
+
+    #timearea div {
+      margin: 10px 0;
+    }
+
+    #timearea .time {
+      font-size: 72px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #timearea .date {
+      font-size: 20px;
+      color: #d1d1d1;
+    }
+  </style>
+</head>
+<body onload="ChangeTimeSize()">
+  <canvas id="CanvasContainer">not support</canvas>
+  <div id="timearea">
+    <div class="time"></div>
+    <div class="date"></div>
+  </div>
+
+  <script type="text/javascript">
+    const mycanvas = document.getElementById('CanvasContainer');
+    const ctx = mycanvas.getContext('2d');
+
+    let StartPoint = { x: 0, y: 0 };
+    let EndPoint = { x: 0, y: 0 };
+
+    function drawLine(startPoint, endPoint) {
+      ctx.beginPath();
+      ctx.moveTo(startPoint.x, startPoint.y);
+      ctx.lineTo(endPoint.x, endPoint.y);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+
+    window.addEventListener('resize', () => {
+      mycanvas.height = window.innerHeight;
+      mycanvas.width = window.innerWidth;
+    });
+
+    function ChangeTimeSize() {
+      mycanvas.height = window.innerHeight;
+      mycanvas.width = window.innerWidth;
+    }
+
+    const timeArea = document.getElementById("timearea");
+    const timeDiv = timeArea.querySelector(".time");
+    const dateDiv = timeArea.querySelector(".date");
+
+    Date.prototype.format = function (fmt) {
+      const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+      const o = {
+        "M+": this.getMonth() + 1,
+        "W": weeks[this.getDay()],
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds().toString().padStart(3, '0')
+      };
+
+      if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      }
+
+      for (let k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+          fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+        }
+      }
+      return fmt;
+    };
+
+    function updateTime() {
+      const now = new Date();
+      timeDiv.innerHTML = now.format("hh:mm:ss.S");
+      dateDiv.innerHTML = now.format("yyyy-MM-dd W");
+    }
+
+    setInterval(updateTime, 111);
+
+    setInterval(() => {
+      ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+
+      const numX = Math.floor(Math.random() * 10);
+      const numY = Math.floor(Math.random() * 10);
+
+      for (let i = 0; i < numX; i++) {
+        StartPoint.x = Math.random() * window.innerWidth;
+        StartPoint.y = Math.random() * window.innerHeight;
+        drawLine({ x: 0, y: StartPoint.y }, { x: mycanvas.width, y: StartPoint.y });
+      }
+
+      for (let j = 0; j < numY; j++) {
+        StartPoint.x = Math.random() * window.innerWidth;
+        StartPoint.y = Math.random() * window.innerHeight;
+        drawLine({ x: StartPoint.x, y: 0 }, { x: StartPoint.x, y: mycanvas.height });
+      }
+    }, 500);
+  </script>
 </body>
 </html>
 
